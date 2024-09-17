@@ -1,13 +1,13 @@
 from fastapi import FastAPI
-#from .scrapper import pages, feeds
+from .scrapper import pages
 
 app = FastAPI()
 
 @app.get('/pages')
-def home_pages(page:str|None ='world'):
-    #data = pages(page)
-    #return data
-    return {}
+def home_pages(page:str|None =''):
+    data = pages(page)
+    return data
+    
 
 @app.get('/products')
 def home_pages(page:str|None ='world'):
