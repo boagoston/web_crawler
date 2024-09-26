@@ -1,20 +1,12 @@
 from fastapi import FastAPI
-from .scrapper import pages
+from .scrapper import search
 
 app = FastAPI()
 
-@app.get('/pages')
-def home_pages(page:str|None =''):
-    data = pages(page)
+@app.get('/search')
+def search_product(search_key:str|None = None):
+    if(search_key):
+        search_key = str.lower(search_key)
+    data = search(search_key)
     return data
     
-
-@app.get('/products')
-def home_pages(page:str|None ='world'):
-    #data = pages(page)
-    #return data
-    return {}
-
-@app.get('/search')
-def search(page:str|None ='world' ):
-    return {}
