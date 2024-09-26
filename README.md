@@ -19,3 +19,4 @@ get *search_key* input like lenovo
 
 http://127.0.0.1:8000/search?search_key=lenovo
 
+![alt text](https://github.com/boagoston/web_crawler/blob/f204a2981ce8fa2e5807b4d942c038ffb835e92e/lenovo%20api.png "api example 1")
