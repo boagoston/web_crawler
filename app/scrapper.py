@@ -5,6 +5,10 @@ import sys
 
 URL = 'https://webscraper.io/test-sites/e-commerce/static/computers/laptops'
 
+def convert_price(row):
+    price_str = row['price']
+    return float(price_str.replace('$', '').replace(',', ''))
+
 def search(search_key:str)-> dict[Any]:
     result_cards = []
     index = 0
@@ -52,15 +56,17 @@ def search(search_key:str)-> dict[Any]:
                     continue    
 
             row['price'] = div.find('h4', class_='price float-end card-title pull-right').text.strip()
+            row['price'] = convert_price(row)
             row['reviews'] = div.find('p', class_='review-count float-end').text.strip()
             row['rating'] = div.find('p', attrs={'data-rating': True})
             row['rating'] = row['rating'].get('data-rating')
             row['page'] = page
 
+            
             result_cards.append(row)
             
             
-
+    result_ordered_cards = sorted(result_cards, key=lambda x: x['price'])
     
-    return {'total': len(result_cards), 'result_cards': result_cards} 
+    return {'total': len(result_ordered_cards), 'result_cards': result_ordered_cards} 
 
