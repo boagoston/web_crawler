@@ -29,17 +29,8 @@ def search(search_key:str)-> dict[Any]:
         request = requests.get(f'{url_with_page}')
         html = Soup(request.content, 'html.parser')
         
-        #Recorta o numero total de paginas
-        total_page_numbers = html.find_all("ul", attrs= {"class": "pagination"})
-        total_page_numbers = html.find_all("li", attrs= {"class": "page-item"})
-        total_page_numbers = total_page_numbers[-2].text
-        total_page_numbers= total_page_numbers
-        
-        
 
-        
-
-        #Recorta todos os cards da pagina
+         #Recorta todos os cards da pagina
         card_thumbnail = html.find_all("div", attrs= {"class": "card thumbnail"})      
         
         for (i, div) in enumerate(card_thumbnail):
